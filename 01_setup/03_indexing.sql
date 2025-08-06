@@ -18,3 +18,4 @@ CREATE INDEX idx_billing_treatment_id ON billing(treatment_id);
 CREATE INDEX idx_appointments_date ON appointments(appointment_date);
 CREATE INDEX idx_patients_insurance_provider ON patients(insurance_provider);
 CREATE INDEX idx_billing_payment_status ON billing(payment_status); 
+
