@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital DBA Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />    
+</head>
+<body>
+    <header class="main-header">
+        <img src="./assets/logo.png" alt="Hospital DBA Logo" class="logo">
+        <h1>Hospita DBA</h1>
+          <!-- Simulated login -->
+        <div class="login-simulator">
+            <label for="roleSelect">Logged in as:</label>
+            <select id="roleSelect">
+            <option value="hospital_admin">Admin</option>
+            <option value="doctor_user">Doctor</option>
+            <option value="nurse_user">Nurse</option>
+            <option value="billing_user">Billing</option>
+            </select>
+        </div>
+    </header>
+
+    <nav class="sidebar">
+        <ul>
+            <li><img src="./assets/icons/patient.svg" alt="Patient Icon">Patients</li>
+            <li><img src="./assets/icons/doctor.svg" alt="Doctor Icon">Doctors</li>
+            <li><img src="./assets/icons/appointment.svg" alt="Appointment Icon">Appointments</li>
+            <li><img src="./assets/icons/treatment.svg" alt="Treatment Icon">Treatments</li>
+            <li><img src="./assets/icons/billing.svg" alt="Billing Icon">Billing</li>                    
+        </ul>
+    </nav>
+
+    <main class="dashboard">
+        <section class="welcome">
+            <h2>Welcome to the Hospital Management Dashboard</h2>
+            <p>Select a section from the menu to begin</p>
+        </section>
+
+        <section class="cards">
+            <div class="card" id="card-patients">
+                <img src="./assets/icons/patient.svg" alt="Patients Card">
+                <h3>Patients</h3>
+            </div>
+            <div class="card" id="card-doctors">
+                <img src="./assets/icons/doctor.svg" alt="">
+                <h3>Doctors</h3>
+            </div>
+            <div class="card" id="card-appointments">
+                <img src="./assets/icons/appointment.svg" alt="">
+                <h3>Appointments</h3>
+            </div>
+            <div class="card" id="card-treatments">
+                <img src="./assets/icons/treatment.svg" alt="">
+                <h3>Treatments</h3>
+            </div>
+            <div class="card" id="card-billing">
+                <img src="./assets/icons/billing.svg" alt="">
+                <h3>Billing</h3>            
+            </div>    
+        </section>
+
+        <section id="patients-section" class="data-section" style="display: none;">
+            <h2>Patients</h2>
+            <table id="patients-table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Full Name</th>
+                    <th>DOB</th>
+                    <th>Gender</th>
+                    <th>Insurance</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Patient rows will be inserted here by JS -->
+                </tbody>
+            </table>
+            </section>
+
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
