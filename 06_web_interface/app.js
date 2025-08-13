@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const roleSelect = document.getElementById("roleSelect");
-  const patientsSection = document.getElementById("patients-section");
+  //const patientsSection = document.getElementById("patients-section");
   const patientsCard = document.getElementById("card-patients");
-  const doctorsSection = document.getElementById("doctors-section");
+  //const doctorsSection = document.getElementById("doctors-section");
   const doctorsCard = document.getElementById("card-doctors");
 
   // Initial view setup
@@ -20,10 +20,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Only fetch if role has permission
     if (["hospital_admin", "doctor_user"].includes(currentRole)) {
-      patientsSection.style.display = "block";
+    showSection("patients-section");  // ✅ hide others + clear rows
       fetchPatients();
     } else {
-      patientsSection.style.display = "none";
+      hideAllSectionsAndClear();
     }
   });
 
@@ -34,10 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Only fetch if role has permission
     if (["hospital_admin", "doctor_user"].includes(currentRole)) {
-      doctorsSection.style.display = "block";
+      showSection("doctors-section");   // ✅ hide others + clear rows
       fetchDoctors();
     } else {
-      doctorsSection.style.display = "none";
+      hideAllSectionsAndClear();
     }
   });  
 });
@@ -72,6 +72,20 @@ function updateViewByRole(role) {
       if (billingCard) billingCard.style.display = "block";
       break;
   }
+}
+
+function hideAllSectionsAndClear() {
+  document.querySelectorAll('.data-section').forEach(sec => {
+    sec.style.display = 'none';
+    const tbody = sec.querySelector('tbody');
+    if (tbody) tbody.replaceChildren();
+  });
+}
+
+function showSection(sectionId) {
+  hideAllSectionsAndClear();
+  const sec = document.getElementById(sectionId);
+  if (sec) sec.style.display = 'block';
 }
 
 // Fetch patients from the API
