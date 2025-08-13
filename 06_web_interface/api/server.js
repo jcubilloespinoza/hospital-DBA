@@ -39,6 +39,18 @@ app.get("/api/patients", async (req, res) => {
   }
 });
 
+// API route to fetch doctors
+app.get("/api/doctors", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM doctors");
+    res.json(result.rows);
+  } catch (error) {
+    console.error("Error fetching patients:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
 // Start Server
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);

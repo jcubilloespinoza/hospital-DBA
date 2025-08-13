@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const roleSelect = document.getElementById("roleSelect");
   const patientsSection = document.getElementById("patients-section");
   const patientsCard = document.getElementById("card-patients");
+  const doctorsSection = document.getElementById("doctors-section");
+  const doctorsCard = document.getElementById("card-doctors");
 
   // Initial view setup
   updateViewByRole(roleSelect.value);
@@ -24,6 +26,20 @@ document.addEventListener("DOMContentLoaded", () => {
       patientsSection.style.display = "none";
     }
   });
+
+
+  // Event: Clicking the Doctors card
+  doctorsCard?.addEventListener("click", () => {
+    const currentRole = roleSelect.value;
+
+    // Only fetch if role has permission
+    if (["hospital_admin", "doctor_user"].includes(currentRole)) {
+      doctorsSection.style.display = "block";
+      fetchDoctors();
+    } else {
+      doctorsSection.style.display = "none";
+    }
+  });  
 });
 
 // Role-based card visibility
@@ -82,5 +98,33 @@ async function fetchPatients() {
     });
   } catch (error) {
     console.error("Error loading patients:", error);
+  }
+}
+
+// Fetch doctors from the API
+async function fetchDoctors() {
+  console.log("Fetching doctors...");
+  try {
+    const response = await fetch("/api/doctors");
+    const data = await response.json();
+    console.log("Data received:", data);
+
+    const tbody = document.querySelector("#doctors-table tbody");
+    tbody.innerHTML = "";
+
+    data.forEach(doctor => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${doctor.doctor_id}</td>
+        <td>${doctor.first_name} ${doctor.last_name}</td>
+        <td>${doctor.specialization}</td>
+        <td>${doctor.phone_number}</td>
+        <td>${doctor.years_experience}</td>
+        <td>${doctor.hospital_branch}</td>        
+      `;
+      tbody.appendChild(row);
+    });
+  } catch (error) {
+    console.error("Error loading doctors:", error);
   }
 }

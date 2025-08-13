@@ -151,21 +151,25 @@ body {
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
-#patients-table {
+#patients-table, 
+#doctors-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1rem;
 }
 
 #patients-table th,
-#patients-table td {
+#patients-table td, 
+#doctors-table th,
+#doctors-table td {
   padding: 0.75rem 1rem;
   border-bottom: 1px solid #eee;
   text-align: left;
   font-size: 0.9rem;
 }
 
-#patients-table th {
+#patients-table th, 
+#doctors-table th {
   background-color: #f0f4f8;
   font-weight: 600;
   color: #002B5B;
