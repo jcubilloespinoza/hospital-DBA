@@ -4,7 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const patientsCard = document.getElementById("card-patients");
   //const doctorsSection = document.getElementById("doctors-section");
   const doctorsCard = document.getElementById("card-doctors");
-
+  //const appointmentsSection = document.getElementById("appointments-section");
+  const appointmentsCard = document.getElementById("card-appointments");
+  const treatmentsCard = document.getElementById("card-treatments");  
+  const billingCard = document.getElementById("card-billing");  
   // Initial view setup
   updateViewByRole(roleSelect.value);
 
@@ -12,12 +15,13 @@ document.addEventListener("DOMContentLoaded", () => {
   roleSelect.addEventListener("change", () => {
     const selectedRole = roleSelect.value;
     updateViewByRole(selectedRole);
+    console.log(roleSelect.value);
   });
 
   // Event: Clicking the Patients card
   patientsCard?.addEventListener("click", () => {
     const currentRole = roleSelect.value;
-
+    console.log(currentRole);
     // Only fetch if role has permission
     if (["hospital_admin", "doctor_user"].includes(currentRole)) {
     showSection("patients-section");  // ✅ hide others + clear rows
@@ -31,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Event: Clicking the Doctors card
   doctorsCard?.addEventListener("click", () => {
     const currentRole = roleSelect.value;
+    console.log(currentRole);
 
     // Only fetch if role has permission
     if (["hospital_admin", "doctor_user"].includes(currentRole)) {
@@ -40,7 +45,48 @@ document.addEventListener("DOMContentLoaded", () => {
       hideAllSectionsAndClear();
     }
   });  
+
+  // Event: Clicking the Appointments card
+  appointmentsCard?.addEventListener("click", () => {
+    const currentRole = roleSelect.value;
+    console.log(currentRole);
+    // Only fetch if role has permission
+    if (["hospital_admin", "doctor_user", "nurse_user"].includes(currentRole)) {
+      showSection("appointments-section");   // ✅ hide others + clear rows
+      fetchAppointments();
+    } else {
+      hideAllSectionsAndClear();
+    }
+  });  
+
+  // Event: Clicking the Treatments card
+  treatmentsCard?.addEventListener("click", () => {
+    const currentRole = roleSelect.value;
+    console.log(currentRole);
+    // Only fetch if role has permission
+    if (["hospital_admin", "doctor_user", "nurse_user"].includes(currentRole)) {
+      showSection("treatments-section");   // ✅ hide others + clear rows
+      fetchTreatments();
+    } else {
+      hideAllSectionsAndClear();
+    }
+  });  
+
+  // Event: Clicking the Billing card
+  billingCard?.addEventListener("click", () => {
+    const currentRole = roleSelect.value;
+    console.log(currentRole);
+    // Only fetch if role has permission
+    if (["hospital_admin", "billing_user"].includes(currentRole)) {
+      showSection("billing-section");   // ✅ hide others + clear rows
+      fetchBilling();
+    } else {
+      hideAllSectionsAndClear();
+    }
+  });  
 });
+
+
 
 // Role-based card visibility
 function updateViewByRole(role) {
@@ -140,5 +186,93 @@ async function fetchDoctors() {
     });
   } catch (error) {
     console.error("Error loading doctors:", error);
+  }
+}
+
+// Fetch appointments from the API
+async function fetchAppointments() {
+  console.log("Fetching appointments...");
+  try {
+    const response = await fetch("/api/appointments");
+    const data = await response.json();
+    console.log("Data received:", data);
+
+    const tbody = document.querySelector("#appointments-table tbody");
+    tbody.innerHTML = "";
+
+    data.forEach(appointment => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${appointment.appointment_id}</td>
+        <td>${appointment.patient_id}</td>
+        <td>${appointment.doctor_id}</td>
+        <td>${appointment.appointment_date.slice(0, 10)}</td>
+        <td>${appointment.appointment_time}</td>
+        <td>${appointment.reason_for_visit}</td>   
+        <td>${appointment.status}</td>  
+      `;
+      tbody.appendChild(row);
+    });
+  } catch (error) {
+    console.error("Error loading appointments:", error);
+  }
+}
+
+
+// Fetch Treatments from the API
+async function fetchTreatments() {
+  console.log("Fetching treatments...");
+  try {
+    const response = await fetch("/api/treatments");
+    const data = await response.json();
+    console.log("Data received:", data);
+
+    const tbody = document.querySelector("#treatments-table tbody");
+    tbody.innerHTML = "";
+
+    data.forEach(treatment => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${treatment.treatment_id}</td>
+        <td>${treatment.appointment_id}</td>
+        <td>${treatment.treatment_type}</td>
+        <td>${treatment.description}</td>
+        <td>${treatment.cost}</td>
+        <td>${treatment.treatment_date.slice(0, 10)}</td>   
+      `;
+      tbody.appendChild(row);
+    });
+  } catch (error) {
+    console.error("Error loading treatments:", error);
+  }
+}
+
+
+// Fetch Billing Data from the API
+async function fetchBilling() {
+  console.log("Fetching billing data...");
+  try {
+    const response = await fetch("/api/billing");
+    const data = await response.json();
+    console.log("Data received:", data);
+
+    const tbody = document.querySelector("#billing-table tbody");
+    tbody.innerHTML = "";
+
+    data.forEach(bill => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${bill.bill_id}</td>
+        <td>${bill.patient_id}</td>
+        <td>${bill.treatment_id}</td>
+        <td>${bill.bill_date.slice(0,10)}</td>
+        <td>${bill.amount}</td>        
+        <td>${bill.payment_method}</td>  
+        <td>${bill.payment_status}</td>   
+      `;
+      tbody.appendChild(row);
+    });
+  } catch (error) {
+    console.error("Error loading billing data:", error);
   }
 }

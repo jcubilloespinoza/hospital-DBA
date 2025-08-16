@@ -84,22 +84,79 @@
             <h2>Doctors</h2>
             <table id="doctors-table">
                 <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Full Name</th>
-                    <th>Specialization</th>
-                    <th>Phone Number</th>
-                    <th>Years of Experience</th>
-                    <th>Hospital Branch</th>
-                </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Full Name</th>
+                        <th>Specialization</th>
+                        <th>Phone Number</th>
+                        <th>Years of Experience</th>
+                        <th>Hospital Branch</th>
+                    </tr>
                 </thead>
                 <tbody>
                 <!-- Doctor rows will be inserted here by JS -->
                 </tbody>
             </table>
             </section>
-            
 
+        <section id="appointments-section" class="data-section" style="display: none;">
+            <h2>Appointments</h2>
+            <table id="appointments-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Patient ID</th>
+                        <th>Doctor ID</th>
+                        <th>Appointment Date</th>
+                        <th>Appointment Time</th>
+                        <th>Reason for Visit</th>
+                        <th>Status</th>                    
+                    </tr>
+                </thead>
+                <tbody>
+                <!-- Appointments rows will be inserted here by JS -->
+                </tbody>
+            </table>
+            </section>
+
+        <section id="treatments-section" class="data-section" style="display: none;">
+            <h2>Treatments</h2>
+                <table id="treatments-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Appointment ID</th>
+                            <th>Treatment Type</th>
+                            <th>Description</th>
+                            <th>Cost ($)</th>
+                            <th>Treatment Date</th>               
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Treatments rows will be inserted here by JS -->
+                    </tbody>
+                </table>
+            </section>            
+
+        <section id="billing-section" class="data-section" style="display: none;">
+            <h2>Billing</h2>
+                <table id="billing-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Patient ID</th>
+                            <th>Treatment ID</th>
+                            <th>Bill Date</th>
+                            <th>Amount ($)</th>
+                            <th>Payment Method</th>      
+                            <th>Payment Status</th>                                       
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Billing rows will be inserted here by JS -->
+                    </tbody>
+                </table>
+            </section>                 
     </main>
     <script src="app.js"></script>
 </body>

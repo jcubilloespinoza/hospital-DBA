@@ -152,7 +152,10 @@ body {
 }
 
 #patients-table, 
-#doctors-table {
+#doctors-table, 
+#appointments-table, 
+#treatments-table, 
+#billing-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1rem;
@@ -161,7 +164,13 @@ body {
 #patients-table th,
 #patients-table td, 
 #doctors-table th,
-#doctors-table td {
+#doctors-table td,
+#appointments-table th,
+#appointments-table td, 
+#treatments-table th,
+#treatments-table td,
+#billing-table th,
+#billing-table td {
   padding: 0.75rem 1rem;
   border-bottom: 1px solid #eee;
   text-align: left;
@@ -169,7 +178,10 @@ body {
 }
 
 #patients-table th, 
-#doctors-table th {
+#doctors-table th, 
+#appointments-table th, 
+#treatments-table th, 
+#billing-table th {
   background-color: #f0f4f8;
   font-weight: 600;
   color: #002B5B;

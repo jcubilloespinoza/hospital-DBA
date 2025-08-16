@@ -50,6 +50,38 @@ app.get("/api/doctors", async (req, res) => {
   }
 });
 
+// API route to fetch appointments
+app.get("/api/appointments", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM appointments");
+    res.json(result.rows);
+  } catch (error) {
+    console.error("Error fetching appointments:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// API route to fetch treatments
+app.get("/api/treatments", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM treatments");
+    res.json(result.rows);
+  } catch (error) {
+    console.error("Error fetching treatments:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// API route to fetch billing data
+app.get("/api/billing", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM billing");
+    res.json(result.rows);
+  } catch (error) {
+    console.error("Error fetching billing data:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 // Start Server
 app.listen(PORT, () => {
