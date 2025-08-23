@@ -1,10 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const roleSelect = document.getElementById("roleSelect");
-  //const patientsSection = document.getElementById("patients-section");
   const patientsCard = document.getElementById("card-patients");
-  //const doctorsSection = document.getElementById("doctors-section");
   const doctorsCard = document.getElementById("card-doctors");
-  //const appointmentsSection = document.getElementById("appointments-section");
   const appointmentsCard = document.getElementById("card-appointments");
   const treatmentsCard = document.getElementById("card-treatments");  
   const billingCard = document.getElementById("card-billing");  
@@ -85,8 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });  
 });
-
-
 
 // Role-based card visibility
 function updateViewByRole(role) {
@@ -218,7 +213,6 @@ async function fetchAppointments() {
   }
 }
 
-
 // Fetch Treatments from the API
 async function fetchTreatments() {
   console.log("Fetching treatments...");
@@ -246,7 +240,6 @@ async function fetchTreatments() {
     console.error("Error loading treatments:", error);
   }
 }
-
 
 // Fetch Billing Data from the API
 async function fetchBilling() {
