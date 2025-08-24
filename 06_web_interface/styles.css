@@ -16,8 +16,8 @@ body {
 /* Sidebar */
 .sidebar {
   width: 220px;
-  background-color: #002B5B;
-  color: white;
+  background-color: #2563eb;
+  color: rgb(33, 34, 77);
   padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
@@ -40,7 +40,7 @@ body {
 }
 
 .sidebar li:hover {
-  background-color: #004080;
+  background-color:lightblue;
 }
 
 .sidebar img {
@@ -186,6 +186,16 @@ body {
   font-weight: 600;
   color: #002B5B;
 }
+
+a { 
+  text-decoration: none; 
+}
+
+a.no-underline:visited {
+  color: white;           
+  text-decoration: none;     
+}
+
 
 
 /* Responsive */

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Doctors — Search & Filters</title>
+  <link rel="stylesheet" href="./styles-searches.css">
+</head>
+<body>
+  <div class="shell">
+    <div class="card">
+        <div class="page-actions">
+        <a href="./index.html" class="btn primary back-btn" aria-label="Back to dashboard">← Back to Dashboard</a>
+</div>
+      <h1>Doctors</h1>
+
+      <!-- Filters / Toolbar -->
+      <div class="toolbar" role="region" aria-label="Search and filters">
+        <div class="toolbar-row">
+          <div class="field">
+            <label for="q">Quick search (all columns)</label>
+            <input id="q" name="q" type="text"
+                   placeholder="Search by ID, name, Specialization, Phone Number, Years of Experience, Hospital Branch"
+                   aria-controls="doctors-table" />
+          </div>
+
+          <div class="field">
+            <label for="perPage">Rows per page</label>
+            <select id="perPage" name="perPage" aria-controls="patients-table">
+              <option>10</option>
+              <option>25</option>
+              <option>50</option>
+              <option>100</option>
+            </select>
+          </div>
+
+          <div class="toolbar-row">
+            <button class="btn ghost" id="clearFilters" type="button">Clear</button>
+            <button class="btn primary" id="applyFilters" type="button">Apply</button>
+            <button class="btn" id="exportCsv" type="button" disabled title="Wire up later">Export CSV</button>
+          </div>
+        </div>
+
+        <!-- Advanced (column) filters -->
+        <details class="adv" id="advFilters">
+          <summary>Advanced filters (by column)</summary>
+          <div class="adv-grid">
+            <div class="field">
+              <label for="f-id">ID</label>
+              <input id="f-id" type="text" placeholder="e.g., D001" data-col="id" />
+            </div>
+            <div class="field">
+              <label for="f-name">Full Name</label>
+              <input id="f-name" type="text" placeholder="e.g., Emily Smith" data-col="full_name" />
+            </div>
+            <div class="field">
+              <label for="f-phone_number">Phone Number</label>
+              <input id="f-phone_number type="tel" placeholder="e.g., 8322010160" data-col="phone_number" />
+            </div>
+            <div class="field">
+              <label for="f-hospital_branch">Hospital Branch</label>
+              <input id="f-hospital_branch" type="text" placeholder="e.g., Westside Clinic" data-col="hospital_branch" />
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- Results table -->
+      <div>
+        <table id="patients-table" aria-describedby="resultsInfo">
+          <thead>
+            <tr>
+              <th scope="col" data-col="id">ID</th>
+              <th scope="col" data-col="full_name">Full Name</th>
+              <th scope="col" data-col="specialization">Specialization</th>
+              <th scope="col" data-col="phone_number">Phone Number</th>
+              <th scope="col" data-col="years_of_experience">Years of Experience</th>
+              <th scope="col" data-col="hospital_branch">Hospital Branch</th>              
+              
+            </tr>
+          </thead>
+          <tbody id="doctors-tbody">
+            <!-- Sample rows (remove once you load real data) -->
+            <tr>
+              <td>D001</td><td>David Taylor</td><td>Dermatology</td><td>8322010158</td><td>17</td><td>Westside Clinic</td>
+            </tr>
+            <tr>
+              <td>D002</td><td>Jane Davis</td><td>Pediatrics</td><td>9004382050</td><td>24</td><td>Eastside Clinic</td>
+            </tr>
+            <tr>
+              <td>D003</td><td>Jane Smith</td><td>Pediatrics</td><td>8737740598</td><td>19</td><td>Eastside Clinic</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Status / chips -->
+      <div class="statusbar" id="resultsInfo">
+        <div class="chips" aria-live="polite"></div>
+        <div><span id="resultCount">3</span> results</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hook your JS later -->
+  <!-- <script src="./patients-search.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Appointments — Search & Filters</title>
+  <link rel="stylesheet" href="./styles-searches.css">
+</head>
+<body>
+  <div class="shell">
+    <div class="card">
+        <div class="page-actions">
+        <a href="./index.html" class="btn primary back-btn" aria-label="Back to dashboard">← Back to Dashboard</a>
+</div>
+      <h1>Appointments needs to be modified</h1>
+
+      <!-- Filters / Toolbar -->
+      <div class="toolbar" role="region" aria-label="Search and filters">
+        <div class="toolbar-row">
+          <div class="field">
+            <label for="q">Quick search (all columns)</label>
+            <input id="q" name="q" type="text"
+                   placeholder="Search by ID, Patient ID, Doctor ID, Date, Status..."
+                   aria-controls="appointments-table" />
+          </div>
+
+          <div class="field">
+            <label for="perPage">Rows per page</label>
+            <select id="perPage" name="perPage" aria-controls="patients-table">
+              <option>10</option>
+              <option>25</option>
+              <option>50</option>
+              <option>100</option>
+            </select>
+          </div>
+
+          <div class="toolbar-row">
+            <button class="btn ghost" id="clearFilters" type="button">Clear</button>
+            <button class="btn primary" id="applyFilters" type="button">Apply</button>
+            <button class="btn" id="exportCsv" type="button" disabled title="Wire up later">Export CSV</button>
+          </div>
+        </div>
+
+        <!-- Advanced (column) filters -->
+        <details class="adv" id="advFilters">
+          <summary>Advanced filters (by column)</summary>
+          <div class="adv-grid">
+            <div class="field">
+              <label for="f-id">ID</label>
+              <input id="f-id" type="text" placeholder="e.g., A001" data-col="id" />
+            </div>
+            <div class="field">
+              <label for="f-patient_id">Patient ID</label>
+              <input id="f-patient_id"" type="text" placeholder="e.g., P001" data-col="patient_id" />
+            </div>
+ 
+            <div class="field">
+              <label for="f-doctor_id">Doctor ID</label>
+              <input id="f-doctor_id"" type="text" placeholder="e.g., D001" data-col="doctor_id" />
+            </div>
+
+            <div class="field">
+              <label for="f-appointment_date">Appointment Date</label>
+              <input id="f-appointment_date" type="date" data-col="appointment_date"/>
+            </div>
+
+            <div class="field">
+              <label for="f-reason_for_visit">Reason For Visit</label>
+              <input id="f-reason_for_visit" type="text" placeholder="e.g., Therapy" data-col="reason_for_visit"/>
+            </div>
+
+            <div class="field">
+              <label for="f-status">Status</label>
+              <input id="f-status" type="text" placeholder="e.g., Scheduled" data-col="status" />
+            </div>            
+          </div>
+        </details>
+      </div>
+
+      <!-- Results table -->
+      <div>
+        <table id="appointments-table" aria-describedby="resultsInfo">
+          <thead>
+            <tr>
+              <th scope="col" data-col="id">ID</th>
+              <th scope="col" data-col="patient_id">Patient ID</th>
+              <th scope="col" data-col="doctor_id">Doctor ID</th>
+              <th scope="col" data-col="appointment_date">Appointment Date</th>
+              <th scope="col" data-col="appointment_time">Appointment Time</th>
+              <th scope="col" data-col="reason_for_visit">Reason for Visit</th>
+              <th scope="col" data-col="status">Status</th>              
+            </tr>
+          </thead>
+          <tbody id="appointments-tbody">
+            <!-- Sample rows (remove once you load real data) -->
+            <tr>
+              <td>A001</td><td>P001</td><td>D001</td><td>2025-08-23</td><td>15:15:00</td><td>Therapy</td><td>Scheduled</td>
+            </tr>
+            <tr>
+              <td>A002</td><td>P002</td><td>D002</td><td>2025-08-23</td><td>15:45:00</td><td>Therapy</td><td>No-Show</td>
+            </tr>
+            <tr>
+              <td>A003</td><td>P003</td><td>D003</td><td>2025-08-23</td><td>16:15:00</td><td>Therapy</td><td>Scheduled</td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Status / chips -->
+      <div class="statusbar" id="resultsInfo">
+        <div class="chips" aria-live="polite"></div>
+        <div><span id="resultCount">3</span> results</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hook your JS later -->
+  <!-- <script src="./patients-search.js"></script> -->
+</body>
+</html>

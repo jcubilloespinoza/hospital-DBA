@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Billing — Search & Filters</title>
+  <link rel="stylesheet" href="./styles-searches.css">
+</head>
+<body>
+  <div class="shell">
+    <div class="card">
+        <div class="page-actions">
+        <a href="./index.html" class="btn primary back-btn" aria-label="Back to dashboard">← Back to Dashboard</a>
+</div>
+      <h1>Billing needs to be modified</h1>
+
+      <!-- Filters / Toolbar -->
+      <div class="toolbar" role="region" aria-label="Search and filters">
+        <div class="toolbar-row">
+          <div class="field">
+            <label for="q">Quick search (all columns)</label>
+            <input id="q" name="q" type="text"
+                   placeholder="Search by ID, name, DOB, gender, insurance…"
+                   aria-controls="patients-table" />
+          </div>
+
+          <div class="field">
+            <label for="perPage">Rows per page</label>
+            <select id="perPage" name="perPage" aria-controls="patients-table">
+              <option>10</option>
+              <option>25</option>
+              <option>50</option>
+              <option>100</option>
+            </select>
+          </div>
+
+          <div class="toolbar-row">
+            <button class="btn ghost" id="clearFilters" type="button">Clear</button>
+            <button class="btn primary" id="applyFilters" type="button">Apply</button>
+            <button class="btn" id="exportCsv" type="button" disabled title="Wire up later">Export CSV</button>
+          </div>
+        </div>
+
+        <!-- Advanced (column) filters -->
+        <details class="adv" id="advFilters">
+          <summary>Advanced filters (by column)</summary>
+          <div class="adv-grid">
+            <div class="field">
+              <label for="f-id">ID</label>
+              <input id="f-id" type="text" placeholder="e.g., P001" data-col="id" />
+            </div>
+            <div class="field">
+              <label for="f-name">Full Name</label>
+              <input id="f-name" type="text" placeholder="e.g., Emily Smith" data-col="full_name" />
+            </div>
+            <div class="field">
+              <label for="f-dob-from">DOB — From</label>
+              <input id="f-dob-from" type="date" data-col="dob_from" />
+            </div>
+            <div class="field">
+              <label for="f-dob-to">DOB — To</label>
+              <input id="f-dob-to" type="date" data-col="dob_to" />
+            </div>
+            <div class="field">
+              <label for="f-gender">Gender</label>
+              <select id="f-gender" data-col="gender">
+                <option value="">Any</option>
+                <option value="F">F</option>
+                <option value="M">M</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-insurance">Insurance</label>
+              <input id="f-insurance" type="text" placeholder="e.g., PulseSecure" data-col="insurance" />
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- Results table -->
+      <div>
+        <table id="patients-table" aria-describedby="resultsInfo">
+          <thead>
+            <tr>
+              <th scope="col" data-col="id">ID</th>
+              <th scope="col" data-col="full_name">Full Name</th>
+              <th scope="col" data-col="dob">DOB</th>
+              <th scope="col" data-col="gender">Gender</th>
+              <th scope="col" data-col="ins">Insurance</th>
+            </tr>
+          </thead>
+          <tbody id="patients-tbody">
+            <!-- Sample rows (remove once you load real data) -->
+            <tr>
+              <td>P001</td><td>David Williams</td><td>1955-06-04</td><td>F</td><td>WellnessCorp</td>
+            </tr>
+            <tr>
+              <td>P002</td><td>Emily Smith</td><td>1984-10-12</td><td>F</td><td>PulseSecure</td>
+            </tr>
+            <tr>
+              <td>P003</td><td>Laura Jones</td><td>1977-08-21</td><td>M</td><td>PulseSecure</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Status / chips -->
+      <div class="statusbar" id="resultsInfo">
+        <div class="chips" aria-live="polite"></div>
+        <div><span id="resultCount">3</span> results</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hook your JS later -->
+  <!-- <script src="./patients-search.js"></script> -->
+</body>
+</html>
